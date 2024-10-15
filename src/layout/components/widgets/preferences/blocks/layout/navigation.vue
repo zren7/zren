@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { $t } from '@vben/locales'
-
 import SwitchItem from '../switch-item.vue'
-
 import ToggleItem from '../toggle-item.vue'
 import type { SelectOption } from '@vben/types'
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { VbenScrollbar } from '@vben-core/shadcn-ui'
+// import { VbenScrollbar } from '@vben-core/shadcn-ui'
 import { useScrollLock } from '@vueuse/core'
 import { computed, shallowRef, useSlots, watchEffect, type CSSProperties } from 'vue'
-import { SidebarCollapseButton, SidebarFixedButton } from './widgets'
+// import { SidebarCollapseButton, SidebarFixedButton } from './widgets'
 
 interface Props {
   /**
@@ -258,22 +258,22 @@ function handleMouseleave() {
     @mouseenter="handleMouseenter"
     @mouseleave="handleMouseleave"
   >
-    <SidebarFixedButton
+    <!-- <SidebarFixedButton
       v-if="!collapse && !isSidebarMixed"
       v-model:expand-on-hover="expandOnHover"
-    />
+    /> -->
     <div v-if="slots.logo" :style="headerStyle">
       <slot name="logo" />
     </div>
-    <VbenScrollbar :style="contentStyle" shadow shadow-border>
-      <slot />
-    </VbenScrollbar>
+    <!-- <VbenScrollbar :style="contentStyle" shadow shadow-border> -->
+    <slot />
+    <!-- </VbenScrollbar> -->
 
     <div :style="collapseStyle" />
-    <SidebarCollapseButton
+    <!-- <SidebarCollapseButton
       v-if="showCollapseButton && !isSidebarMixed"
       v-model:collapsed="collapse"
-    />
+    /> -->
     <div
       v-if="isSidebarMixed"
       ref="asideRef"
@@ -283,18 +283,18 @@ function handleMouseleave() {
       :style="extraStyle"
       class="border-border bg-sidebar fixed top-0 h-full overflow-hidden border-r transition-all duration-200"
     >
-      <SidebarCollapseButton
+      <!-- <SidebarCollapseButton
         v-if="isSidebarMixed && expandOnHover"
         v-model:collapsed="extraCollapse"
-      />
+      /> -->
 
-      <SidebarFixedButton v-if="!extraCollapse" v-model:expand-on-hover="expandOnHover" />
+      <!-- <SidebarFixedButton v-if="!extraCollapse" v-model:expand-on-hover="expandOnHover" /> -->
       <div v-if="!extraCollapse" :style="extraTitleStyle" class="pl-2">
         <slot name="extra-title" />
       </div>
-      <VbenScrollbar :style="extraContentStyle" class="border-border py-2" shadow shadow-border>
+      <!-- <VbenScrollbar :style="extraContentStyle" class="border-border py-2" shadow shadow-border>
         <slot name="extra" />
-      </VbenScrollbar>
+      </VbenScrollbar> -->
     </div>
   </aside>
 </template>

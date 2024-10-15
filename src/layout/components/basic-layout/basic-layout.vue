@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import {
-  SCROLL_FIXED_CLASS,
-  useLayoutFooterStyle,
-  useLayoutHeaderStyle
-} from '@vben-core/composables'
-
-import { Menu } from '@vben-core/icons'
-import { VbenIconButton } from '@vben-core/shadcn-ui'
+// import { Menu } from '@vben-core/icons'
+// import { VbenIconButton } from '@vben-core/shadcn-ui'
 
 import { useMouse, useScroll, useThrottleFn } from '@vueuse/core'
+import { SCROLL_FIXED_CLASS } from '../constant/'
+
+import { useLayoutFooterStyle, useLayoutHeaderStyle } from '../utils/layout-style'
 import {
   LayoutContent,
   LayoutFooter,
@@ -499,13 +496,13 @@ function handleHeaderToggle() {
           </template>
 
           <template #toggle-button>
-            <VbenIconButton
+            <!-- <VbenIconButton
               v-if="showHeaderToggleButton"
               class="my-0 ml-2 mr-1 rounded-md"
               @click="handleHeaderToggle"
             >
               <Menu class="size-4" />
-            </VbenIconButton>
+            </VbenIconButton> -->
           </template>
           <slot name="header" />
         </LayoutHeader>
@@ -527,11 +524,11 @@ function handleHeaderToggle() {
         :style="contentStyle"
         class="transition-[margin-top] duration-200"
       >
-        <slot name="content" />
+        <!-- <slot name="content" /> -->
 
-        <template #overlay>
+        <!-- <template #overlay>
           <slot name="content-overlay" />
-        </template>
+        </template> -->
       </LayoutContent>
 
       <LayoutFooter

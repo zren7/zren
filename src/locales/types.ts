@@ -1,3 +1,3 @@
 type LocaleType = 'zh-CN' | 'en'
 
-export { LocaleType }
+export type { LocaleType }

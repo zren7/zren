@@ -5,31 +5,28 @@ const setHtmlPageLang = (locale: string) => {
   document.querySelector('html')?.setAttribute('lang', locale)
 }
 
+// eslint-disable-next-line import/no-mutable-exports
+let i18n: I18n
+
 const localeMap = [
-  {
-    lang: 'zh-CN',
-    name: '简体中文'
-  }
+  { label: '中文', value: 'zh-CN' },
+  { label: 'English', value: 'en-US' }
 ]
 
+const defaultLocale = localeMap[0]
+
 const createI18nOptions = async (): Promise<I18nOptions> => {
-  const locale = {
-    lang: 'zh-CN',
-    name: '简体中文'
-  }
-  const defaultLocal = await import(`../../locales/langs/${locale.lang}.ts`)
+  const defaultLocal = await import(`../../locales/langs/${defaultLocale.value}.ts`)
   const message = defaultLocal.default ?? {}
-
-  setHtmlPageLang(locale.lang)
-
+  setHtmlPageLang(defaultLocale.label)
   return {
     legacy: false,
-    locale: locale.lang,
-    fallbackLocale: locale.lang,
+    locale: defaultLocale.label,
+    fallbackLocale: defaultLocale.label,
     messages: {
-      [locale.lang]: message
+      [defaultLocale.label]: message
     },
-    availableLocales: localeMap.map((v: { lang: any }) => v.lang),
+    availableLocales: localeMap.map((v: { value: any }) => v.value),
     sync: true,
     silentTranslationWarn: true,
     missingWarn: false,
@@ -39,6 +36,8 @@ const createI18nOptions = async (): Promise<I18nOptions> => {
 
 export const setupI18n = async (app: App<Element>) => {
   const options = await createI18nOptions()
-  const i18n = createI18n(options) as I18n
+  i18n = createI18n(options)
   app.use(i18n)
 }
+
+export { i18n }

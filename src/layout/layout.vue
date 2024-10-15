@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // import { Toaster, VbenBackTop, VbenLogo } from '@vben-core/shadcn-ui'
-import { $t } from '@vben/locales'
+import { useI18n } from '@/hooks/web/use-i18n'
 import { preferences, updatePreferences, usePreferences } from '@vben/preferences'
 import { computed, useSlots, watch } from 'vue'
 import { useRefresh } from '@/hooks/web/use-refresh'
@@ -22,7 +22,9 @@ import {
 import { LayoutTabbar } from './components/tabbar'
 import { Breadcrumb, CheckUpdates, Preferences } from './components/widgets'
 
-defineOptions({ name: 'BasicLayout' })
+defineOptions({ name: 'Layout' })
+
+const { t } = useI18n()
 
 const emit = defineEmits<{ clearPreferencesAndLogout: [] }>()
 
@@ -61,7 +63,6 @@ const logoClass = computed(() => {
   if (isSideMixedNav.value) {
     classes.push('flex-center')
   }
-
   return classes.join(' ')
 })
 
@@ -100,7 +101,7 @@ const { handleMenuSelect, headerActive, headerMenus, sidebarActive, sidebarMenus
 function wrapperMenus(menus: any[]) {
   // TODO ...deepToRaw(item)
   return mapTree(menus, (item: { name: any }) => {
-    return { ...item, name: $t(item.name) }
+    return { ...item, name: t(item.name) }
   })
 }
 

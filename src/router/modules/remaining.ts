@@ -1,4 +1,5 @@
 import type { AppRouteRecordRaw } from '../types'
+import { Layout } from '@/layout'
 
 /**
  * redirect: noredirect        当设置 noredirect 的时候该路由在面包屑导航中不可被点击
@@ -35,7 +36,7 @@ import type { AppRouteRecordRaw } from '../types'
 const remainingRouter: AppRouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('@/layout/index.ts'),
+    component: Layout,
     redirect: '/index',
     name: 'Home',
     meta: {},

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLayoutContentStyle } from '@vben-core/composables'
-import { Slot } from '@vben-core/shadcn-ui'
+import { useLayoutContentStyle } from '../../utils/layout-style'
+// import { Slot } from '@vben-core/shadcn-ui'
 import { computed, type CSSProperties } from 'vue'
 import type { ContentCompactType } from '../types'
 
@@ -49,5 +49,6 @@ const style = computed((): CSSProperties => {
       <slot name="overlay" />
     </Slot>
     <slot />
+    <ruoter-view />
   </main>
 </template>
